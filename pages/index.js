@@ -10,7 +10,6 @@ export default function Panel() {
     const [message, setMessage] = useState('');
     const observerRef = useRef(null);
 
-    // Загрузка результатов
     useEffect(() => {
         if (!uid) return;
         fetch(`/api/results?uid=${encodeURIComponent(uid)}`)
@@ -19,7 +18,6 @@ export default function Panel() {
             .catch(console.error);
     }, [uid, message]);
 
-    // Motion-blur observer
     useEffect(() => {
         observerRef.current = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -53,13 +51,13 @@ export default function Panel() {
         <>
             <Head>
                 <title>Rothell C2 Panel</title>
-                <svg style={{ display: 'none' }}>
-                    <filter id="noiseFilter">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-                        <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.05 0" />
-                    </filter>
-                </svg>
             </Head>
+            <svg style={{ display: 'none' }}>
+                <filter id="noiseFilter">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                    <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.05 0" />
+                </filter>
+            </svg>
 
             <div className="panel-container">
                 <h1 className="panel-title blur-in">Rothell C2</h1>
