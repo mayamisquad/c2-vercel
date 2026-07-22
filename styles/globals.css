@@ -1,0 +1,205 @@
+/* styles/globals.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Шумовой фон (как на сайте) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at 50% 50%, #1a1a1a, #000);
+  animation: bg-shift 12s ease-in-out infinite alternate;
+  filter: url(#noiseFilter);
+}
+
+@keyframes bg-shift {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.03); }
+}
+
+/* Стекло */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Motion-blur появление */
+.blur-in {
+  filter: blur(8px);
+  opacity: 0;
+  transition: filter 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.8s ease;
+}
+
+.blur-in.visible {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Светящиеся разделители */
+.separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  margin: 2rem 6rem;
+  opacity: 0.3;
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Стили для панели */
+.panel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.panel-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.control-card {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.control-group {
+  margin-bottom: 1.5rem;
+}
+
+.control-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+
+.control-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.control-input:focus {
+  border-color: #0f0;
+}
+
+.control-select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+  outline: none;
+}
+
+/* Стили для выпадающих опций */
+.control-select option {
+  background: #111;
+  color: #fff;
+}
+
+.cta-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.cta-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: #fff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  transform: scale(1.03);
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+  100% { box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+}
+
+.results-container {
+  margin-top: 3rem;
+}
+
+.result-card {
+  border: 1px solid #333;
+  margin: 1rem 0;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: #aaa;
+}
+
+.result-output {
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.result-screenshot {
+  margin-top: 1rem;
+  max-width: 100%;
+  border: 1px solid #555;
+  border-radius: 8px;
+}
